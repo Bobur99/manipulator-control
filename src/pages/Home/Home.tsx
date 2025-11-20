@@ -224,7 +224,7 @@ const animateCommands = (commands: string) => {
             max={2000}
             step={50}
             value={animationSpeed}
-            onChange={(e, value) => setAnimationSpeed(value as number)}
+            onChange={(_e, value) => setAnimationSpeed(value as number)}
           />
         </Box>
 
