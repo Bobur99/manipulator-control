@@ -238,7 +238,7 @@ const animateCommands = (commands: string) => {
         </Button>
 
         {/* Сетка */}
-        <Box sx={{ mt: 4 }}>
+        <Box sx={{ mt: 4, width: '100%', overflowX: 'auto', overflowY: 'auto', maxHeight: 400 }}>
           <GridTable
             rows={10}
             cols={10}
@@ -249,43 +249,42 @@ const animateCommands = (commands: string) => {
 
         {historyItems.length > 0 && (
           <Paper sx={{ p: 3, mt: 4 }}>
-            <Typography variant="h6" mb={2}>
-              История выполненных команд
-            </Typography>
+  <Typography variant="h6" mb={2}>
+    История выполненных команд
+  </Typography>
 
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Дата</TableCell>
-                  <TableCell>Время</TableCell>
-                  <TableCell>Исходная</TableCell>
-                  <TableCell>Оптимизированная</TableCell>
-                  <TableCell>Образцы до</TableCell>
-                  <TableCell>Образцы после</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {historyItems.map((item: { id: React.Key | null | undefined; date: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; time: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; original: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; optimized: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; samplesBefore: any[]; samplesAfter: any[]; }) => (
-                  <TableRow key={item.id}>
-                    <TableCell>{item.date}</TableCell>
-                    <TableCell>{item.time}</TableCell>
-                    <TableCell>{item.original}</TableCell>
-                    <TableCell>{item.optimized}</TableCell>
-                    <TableCell>
-                      {item.samplesBefore
-                        .map((s) => `(${s.x},${s.y})`)
-                        .join(", ")}
-                    </TableCell>
-                    <TableCell>
-                      {item.samplesAfter
-                        .map((s) => `(${s.x},${s.y})`)
-                        .join(", ")}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
+  <Box sx={{ width: '100%', overflowX: 'auto' }}>
+    <Table sx={{ minWidth: 650 }}>
+      <TableHead>
+        <TableRow>
+          <TableCell>Дата</TableCell>
+          <TableCell>Время</TableCell>
+          <TableCell>Исходная</TableCell>
+          <TableCell>Оптимизированная</TableCell>
+          <TableCell>Образцы до</TableCell>
+          <TableCell>Образцы после</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {historyItems.map((item) => (
+          <TableRow key={item.id}>
+            <TableCell>{item.date}</TableCell>
+            <TableCell>{item.time}</TableCell>
+            <TableCell>{item.original}</TableCell>
+            <TableCell>{item.optimized}</TableCell>
+            <TableCell>
+              {item.samplesBefore.map((s) => `(${s.x},${s.y})`).join(", ")}
+            </TableCell>
+            <TableCell>
+              {item.samplesAfter.map((s) => `(${s.x},${s.y})`).join(", ")}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </Box>
+</Paper>
+
         )}
       </Container>
       <Snackbar
