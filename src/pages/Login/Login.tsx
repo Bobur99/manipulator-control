@@ -26,17 +26,12 @@ const LoginPage: React.FC = () => {
 
   const onSubmit = (data: LoginFormInputs) => {
     if (data.username === "admin" && data.password === "admin") {
-      dispatch(login()); // это сохранит в localStorage
-      navigate("/control"); // переходим на главную страницу
+      dispatch(login()); 
+      navigate("/control"); 
     } else {
       setError("Неверные логин или пароль");
     }
   };
-
-  // const handleLogout = () => {
-  //   dispatch(logout()); 
-  //   navigate("/login");
-  // };
 
   return (
     <Container maxWidth="xs">

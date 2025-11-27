@@ -5,7 +5,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isAuthenticated: !!localStorage.getItem("isAuthenticated"), // читаем из localStorage при загрузке
+  isAuthenticated: !!localStorage.getItem("isAuthenticated"), 
 };
 
 const authSlice = createSlice({
@@ -14,11 +14,11 @@ const authSlice = createSlice({
   reducers: {
     login: (state) => {
       state.isAuthenticated = true;
-      localStorage.setItem("isAuthenticated", "true"); // сохраняем в localStorage
+      localStorage.setItem("isAuthenticated", "true"); 
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      localStorage.removeItem("isAuthenticated"); // очищаем при выходе
+      localStorage.removeItem("isAuthenticated"); 
     },
   },
 });

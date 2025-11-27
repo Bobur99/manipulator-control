@@ -4,8 +4,8 @@ import { Box } from '@mui/material';
 interface GridTableProps {
   rows: number;
   cols: number;
-  manipulatorPosition: { x: number; y: number }; // x = колонка, y = строка
-  samples?: { x: number; y: number }[]; // расположение образцов
+  manipulatorPosition: { x: number; y: number }; 
+  samples?: { x: number; y: number }[]; 
 }
 
 const GridTable: React.FC<GridTableProps> = ({

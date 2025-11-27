@@ -26,7 +26,6 @@ import {
   cleanCommands,
 } from "../../utils/commandOptimizer";
 import GridTable from "../../components/GridTable";
-// import { executeCommands } from "../../utils/commandExecutor";
 import { executeCommandsWithSamples } from "../../utils/commandExecutorWithSamples";
 import { Slider } from "@mui/material";
 
@@ -67,7 +66,6 @@ const GRID_COLS = 10;
 const animateCommands = (commands: string) => {
   if (!commands) return;
 
-  // создаём копию для истории, чтобы не менять реальный стейт
   const samplesBefore = samples.map((s) => ({ ...s }));
 
   const { positions, samplesAfter } = executeCommandsWithSamples(
@@ -75,7 +73,7 @@ const animateCommands = (commands: string) => {
     { x: 0, y: 0 },
     GRID_ROWS,
     GRID_COLS,
-    samplesBefore.map((s) => ({ ...s })) // передаём копию для логики
+    samplesBefore.map((s) => ({ ...s })) 
   );
 
   positions.forEach((pos, index) => {
@@ -83,10 +81,8 @@ const animateCommands = (commands: string) => {
       setManipulatorPosition(pos);
 
       if (index === positions.length - 1) {
-        // обновляем стейт для отображения на сетке
         setSamples(samplesAfter.map((s) => ({ ...s })));
 
-        // записываем в историю только образцы, без манипулятора
         dispatch(
           addHistoryItem({
             original: normalizedOriginal,
@@ -196,7 +192,6 @@ const animateCommands = (commands: string) => {
             </Box>
           </Paper>
 
-          {/* Результат оптимизации */}
           {normalizedOriginal && (
             <Paper sx={{ p: 3 }}>
               <Typography variant="h6" mb={2}>
@@ -237,7 +232,6 @@ const animateCommands = (commands: string) => {
           Запустить манипулятор
         </Button>
 
-        {/* Сетка */}
         <Box sx={{ mt: 4, width: '100%', overflowX: 'auto', overflowY: 'auto', maxHeight: 400 }}>
           <GridTable
             rows={10}
